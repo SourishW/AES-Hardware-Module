@@ -86,8 +86,8 @@ static void subWord(uint8_t* word) {
     }
 }
 
-// Function to generate round keys for AES encryption
-void generateRoundKeys(uint8_t* key, uint8_t* expandedkey, int keyBytes) {
+
+int generateRoundKeys(uint8_t* key, uint8_t* expandedkey, int keyBytes) {
     int N = keyBytes / 4; 
     int R = N + 7;
     for (int i = 0; i< 4*R; i++) {
@@ -129,6 +129,7 @@ void generateRoundKeys(uint8_t* key, uint8_t* expandedkey, int keyBytes) {
         }
         
     }
+    return 4*4*R;
 
 
 }
