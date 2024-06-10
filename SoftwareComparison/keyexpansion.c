@@ -1,16 +1,15 @@
 #include "keyexpansion.h"
-
 #include <stdbool.h>
-#include <stdint.h>
-#define ROTL8(x, shift) ((uint8_t)((x) << (shift)) | ((x) >> (8 - (shift))))
 
-static sbox[256];
-static invsbox[256];
+#define ROTL8(x, shift) ((uint8_t)((x) << (shift)) | ((x) >> (8 - (shift))))
+static uint8_t sbox[256];
+static uint8_t invsbox[256];
 static bool sbox_initialized = false;
 static bool invsbox_initialized = false;
 
 // Internal function to perform the Rijndael Rcon operation
 // buffer rcon must be at least 4 bytes long
+
 static void rcon_create(uint8_t round, uint8_t rcon[4]) {
     static const uint8_t rconTable[] = {0x01, 0x02, 0x04, 0x08, 0x10,
                                         0x20, 0x40, 0x80, 0x1b, 0x36};
